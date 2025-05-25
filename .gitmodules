@@ -1,0 +1,9 @@
+[submodule "Assets/EasyCS-Submodule"]
+	path = Assets/EasyCS-Submodule
+	url = https://github.com/Watcher3056/EasyCS-Submodule.git
+[submodule "Assets/EasyCS-Samples"]
+	path = Assets/EasyCS-Samples
+	url = https://github.com/Watcher3056/EasyCS-Samples.git
+[submodule "Assets/Tri-Inspector-Plus"]
+	path = Assets/Tri-Inspector-Plus
+	url = https://github.com/Watcher3056/Tri-Inspector-Plus.git
