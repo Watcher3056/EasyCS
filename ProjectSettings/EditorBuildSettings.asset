@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/EasyCS-Samples/Scenes/SampleScene.unity
+    guid: 38fc739ba82b4c14b925e3f1b05bd838
   m_configObjects: {}
