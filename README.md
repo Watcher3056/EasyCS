@@ -6,26 +6,30 @@
 - [🚀 Why EasyCS?](#-why-easycs)
 - [📦 Features at a Glance](#-features-at-a-glance)
 - [⚙️ Setup](#️-setup)
+  - [Setup with VContainer](#optional-️-setup-with-vcontainer)
+  - [Setup with Zenject](#optional-️-setup-with-zenject)
 - [📂 Getting Started](#-getting-started)
-- [📦 Data Types](#data-types)
+- [📦 Data Types](#-data-types)
   - [IEntityData](#ientitydata)
   - [ActorData](#actordata)
   - [ActorDataShared](#actordatashared)
-- [🧠 Behavior Types](#behavior-types)
+- [🧠 Behavior Types](#-behavior-types)
   - [EasyCSBehavior](#easycsbehavior)
   - [ActorBehavior](#actorbehavior)
   - [EntityBehavior](#entitybehavior)
-- [📡 Entity Signals](#entity-signals)
-- [📦 Instantiate / Destroy](#instantiate-object)
-- [📄 EntityPredefinedScriptableObject](#entitypredefinedscriptableobject)
-- [🧩 EntityProvider](#entityprovider)
-- [🏗️ EntityFactory](#entityfactory)
-- [🔁 LifeTimeCycle Callbacks](#lifetimecycle-callbacks)
+- [📡 Entity Signals](#-entity-signals)
+- [📦 Instantiate / Destroy](#-instantiate--destroy)
+- [📄 EntityPredefinedScriptableObject](#-entitypredefinedscriptableobject)
+- [🧩 EntityProvider](#-entityprovider)
+- [🏗️ EntityFactory](#-entityfactory)
+- [🔁 LifeTimeCycle Callbacks](#-lifetimecycle-callbacks)
+- [🛠 ScriptableObjects Creator](#-scriptableobjects-creator)
 - [📦 Dependencies](#-dependencies)
 - [📚 Examples](#-examples)
 - [🤝 Contributing](#-contributing)
 - [💖 Support the Developer](#-support-the-developer)
 - [📝 License](#-license)
+
 
 
 
@@ -551,6 +555,12 @@ Limitation:
 - Most of the callbacks works only on `EasyCSBehavior`, `ActorComponent`, `EntityComponent`
 
 ---
+
+## ScriptableObjects Creator
+
+Powerful tool that allows you to search and create **ANY** ScriptableObjects using custom EditorWindow
+
+![Alt Text](https://i.imgur.com/7TgJTLk.gif)
 
 
 
