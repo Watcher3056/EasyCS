@@ -31,34 +31,6 @@
 - [📝 License](#-license)
 
 
-## 📚 Table of Contents
-
-- [🧩 EasyCS – Entity-Data Framework for Unity](#-easycs--entity-data-framework-for-unity)
-- [🚀 Why EasyCS?](#-why-easycs)
-- [📦 Features at a Glance](#-features-at-a-glance)
-- [⚙️ Setup](#️-setup)
-- [📂 Getting Started](#-getting-started)
-- [📦 Data Types](#data-types)
-  - [IEntityData](#ientitydata)
-  - [ActorData](#actordata)
-  - [ActorDataShared](#actordatashared)
-- [🧠 Behavior Types](#behavior-types)
-  - [EasyCSBehavior](#easycsbehavior)
-  - [ActorBehavior](#actorbehavior)
-  - [EntityBehavior](#entitybehavior)
-- [📡 Entity Signals](#entity-signals)
-- [📦 Instantiate / Destroy](#instantiate-object)
-- [📄 EntityPredefinedScriptableObject](#entitypredefinedscriptableobject)
-- [🧩 EntityProvider](#entityprovider)
-- [🏗️ EntityFactory](#entityfactory)
-- [🔁 LifeTimeCycle Callbacks](#lifetimecycle-callbacks)
-- [📦 Dependencies](#-dependencies)
-- [📚 Examples](#-examples)
-- [🤝 Contributing](#-contributing)
-- [💖 Support the Developer](#-support-the-developer)
-- [📝 License](#-license)
-
-
 
 **EasyCS** is a modern, scriptable, and **SUPER** editor-friendly Entity-Component-System (ECS) framework designed specifically for Unity.
 
