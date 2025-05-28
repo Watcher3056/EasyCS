@@ -1,42 +1,46 @@
 # 🧩 EasyCS – Entity-Data Framework for Unity
 
+![Alt Text](https://i.imgur.com/ZKoOJxK.png)
+
+**EasyCS** is a modern, scriptable, and **SUPER** editor-friendly Entity-Component-System (ECS) framework designed specifically for Unity, where "S"(stand for System) in ECS is completely optional.
+
+It bridges the gap between traditional Unity OOP workflows and ECS — without sacrificing usability or flexibility.
+
+The main idea is that you don't need to shift your mind-set from Unity Component-OOP appoach to ECS, while still benefiting from improved Entity-Data workflow!
+
 ## 📚 Table of Contents
 
 - [🧩 EasyCS – Entity-Data Framework for Unity](#-easycs--entity-data-framework-for-unity)
 - [🚀 Why EasyCS?](#-why-easycs)
-- [📦 Features at a Glance](#-features-at-a-glance)
-- [⚙️ Setup](#️-setup)
-  - [Setup with VContainer](#optional-️-setup-with-vcontainer)
-  - [Setup with Zenject](#optional-️-setup-with-zenject)
-- [📂 Getting Started](#-getting-started)
-- [📦 Data Types](#-data-types)
-  - [IEntityData](#ientitydata)
-  - [ActorData](#actordata)
-  - [ActorDataShared](#actordatashared)
-- [🧠 Behavior Types](#-behavior-types)
-  - [EasyCSBehavior](#easycsbehavior)
-  - [ActorBehavior](#actorbehavior)
-  - [EntityBehavior](#entitybehavior)
-- [📡 Entity Signals](#-entity-signals)
-- [📦 Instantiate / Destroy](#-instantiate--destroy)
-- [📄 EntityPredefinedScriptableObject](#-entitypredefinedscriptableobject)
-- [🧩 EntityProvider](#-entityprovider)
-- [🏗️ EntityFactory](#-entityfactory)
-- [🔁 LifeTimeCycle Callbacks](#-lifetimecycle-callbacks)
-- [🛠 ScriptableObjects Creator](#-scriptableobjects-creator)
+- [🌟 Features at a Glance](#-features-at-a-glance)
+- [🔍 Comparison Table](#-framework-comparison-table)
 - [📦 Dependencies](#-dependencies)
+- [⚙️ Setup](#️-setup)
+  - [🔧 Setup with VContainer (Optional)](#optional-️-setup-with-vcontainer)
+  - [🧪 Setup with Zenject (Optional)](#optional-️-setup-with-zenject)
 - [📚 Examples](#-examples)
+- [💬 Join the Community](#-join-the-community)
+- [📂 Getting Started](#-getting-started)
+- [🐣 Basics](#basics)
+  - [💥 Instantiate / Destroy](#instantiate-object)
+  - [🛠 ScriptableObjects Creator](#scriptableobjects-creator)
+  - [📦 Data Types](#data-types)
+    - [🧱 IEntityData](#ientitydata)
+    - [🧊 ActorData](#actordata)
+    - [🔗 ActorDataShared](#actordatashared)
+  - [🧠 Behavior Types](#behavior-types)
+    - [🧬 EasyCSBehavior](#easycsbehavior)
+    - [🎭 ActorBehavior](#actorbehavior)
+    - [🛰 EntityBehavior](#entitybehavior)
+  - [🔁 LifeTimeCycle Callbacks](#lifetimecycle-callbacks)
+  - [📡 Entity Signals](#entity-signals)
+- [🧭 Advanced](#advanced)
+  - [📄 EntityPredefinedScriptableObject](#entitypredefinedscriptableobject)
+  - [📌 EntityProvider](#entityprovider)
+  - [🏗️ EntityFactory](#entityfactory)
 - [🤝 Contributing](#-contributing)
 - [💖 Support the Developer](#-support-the-developer)
 - [📝 License](#-license)
-
-
-
-**EasyCS** is a modern, scriptable, and **SUPER** editor-friendly Entity-Component-System (ECS) framework designed specifically for Unity.
-
-It bridges the gap between traditional Unity workflows and ECS — without sacrificing usability or flexibility.
-
-The main idea is that you don't need to shift your mind-set from Unity Component-OOP appoach to ECS, while still benefiting from improved Entity-Data workflow!
 
 ---
 
@@ -48,7 +52,7 @@ The main idea is that you don't need to shift your mind-set from Unity Component
 - 📦 **ScriptableObjects Data** – All data can be automatically packed in ScriptableObjects when you need it. Forget about writing ScriptableObjects like in old days!
 - 💡 **Zero-Delay ECS** – No deferred execution; all changes apply instantly
 - 🔧 **Editor-first** – Designed with custom inspector tooling and editor extensions
--  🧙 **Odin-Compatibility** - Compatible with OdinInspector & Odin-Validator
+- 🧙 **Odin-Compatibility** - Compatible with OdinInspector & Odin-Validator
 - 🔗 **Supports Cross-scene & Cross-session References** – Maintain links between entities and GameObjects across the scenes!
 - 🧱 **Framework-Agnostic** – Drop-in ready with Zenject or VContainer support **(Optional)**
 
@@ -65,6 +69,40 @@ The main idea is that you don't need to shift your mind-set from Unity Component
 | 🧠 Behavior Providers           | Modular runtime behaviors with injection         |
 | 📂 Auto-generated Source        | Providers and factories created via reflection   |
 | ⚙️ Framework Integrations       | Built-in support for Zenject, VContainer         |
+
+## 🔍 Framework Comparison Table
+
+| Feature / Capability                        | Classic Unity            | Zenject / VContainer DI                     | Classical ECS               | 🧩 **EasyCS**                         |
+|--------------------------------------------|---------------------------|---------------------------------------------|-----------------------------|--------------------------------------|
+| ✅ **ScriptableObject Integration**         | ❌ Manual, boilerplate     | 🟡 Manual or per-pattern                     | ❌ Not used                  | ✅ Native + Automated                |
+| 🧱 **Component Modularity**                 | 🟡 MonoBehavior composition | 🟡 Service-level modularity only             | ✅ System-defined archetypes | ✅ Behavior + Data Layers           |
+| 🔄 **Instantiate / Destroy Entities**       | 🟡 GameObject.Destroy      | 🟡 Unity-style destruction                   | ✅ Built-in, loop-friendly   | ✅ Entity-aware creation/destruction|
+| 💾 **Save System Integration**              | ❌ Requires boilerplate     | 🟡 DI-friendly but needs logic               | 🟡 Loop-ready, verbose       | ✅ Loopable + serializable data     |
+| 🧩 **Entity Construction**                  | ❌ Manual Mono setup        | 🟡 Scene installers + custom prefabs         | ✅ Data-defined archetypes   | ✅ Prefab + Scriptable Entity setup |
+| 🧠 **MonoBehaviour Reuse**                  | ✅ Built-in                 | 🟡 Wrapped in services                       | 🟡 Requires refactoring      | ✅ Retains Unity-style reuse        |
+| 🧩 **Local Data Injection**                 | ❌ Manual references        | 🟡 Needs custom installers                   | ❌ Not designed for it       | ✅ Declarative and automatic       |
+| 🏁 **Entry Point (Lifecycle Bootstrap)**    | ❌ None                     | ✅ Custom installers                         | ✅ System-based              | ✅ EasyCSInstaller                  |
+| 🔁 **Loop-Ready Data Access**               | ❌ Not supported natively   | 🟡 Partial (registered only)                | ✅ Native                    | ✅ Native per Entity access         |
+| ⚡ **Conversion from Existing Code**        | —                          | 🟡 Needs wrapping in services                | ❌ Full refactor required    | ✅ Easy MonoBehaviour conversion    |
+| 💡 **Learning Curve**                       | ✅ Familiar                 | 🟡 Moderate (DI concepts)                    | ❌ High (ECS paradigm shift) | ✅ Low, Unity-like feel             |
+| 🔌 **Compatible with DI Frameworks**        | 🟡 With adapters            | ✅ Native                                    | ❌ Not applicable            | ✅ Optional & Compatible            |
+| ⚡ **Logic Reactivity**                    | ✅ Native                    | ✅ Native                                   | 🟡 Frame-delayed             | ✅ Native                           |
+| 🧪 **Prototype Friendliness**              | ✅ Easy but needs refactor  | 🟡 Needs additional setup                    | ❌ Not friendly              | ✅ Near Native                    |
+| 🧰 **Editor-Friendliness**                 | 🟡 Familiar but limited     | 🟡 Same as Unity                             | ❌ Poor integration          | ✅ Enhanced with tools & Validation |
+| 📈 **Scalability**                        | ❌ Requires custom solutions | 🟡 Improves scaling, not ideal for per-object data | ✅ Built for large-scale systems | ✅ Potentially scalable |
+
+---
+
+## 📦 Dependencies
+
+| Package            | Purpose                    | Optional |
+|--------------------|----------------------------|----------|
+| Unity 2021+        | Minimum version supported  | ❌        |
+| com.unity.2d.animation | Required for editor-hooks  | ❌        |
+| Tri Inspector Plus | Required for editor        | ❌ |
+| Zenject            | DI Framework support       | ✅        |
+| VContainer         | DI Framework support       | ✅        |
+| Odin Inspector     | Enhanced inspector UI      | ✅        |
 
 ---
 
@@ -91,6 +129,20 @@ https://github.com/Watcher3056/EasyCS-Submodule/releases
 6. Drag-n-Drop `EasyCSInstaller` into `Mono Installers` list on `SceneContext`
 
 ---
+
+
+## 📚 Examples
+
+Check:
+`Assets/EasyCS/EasyCS-Samples/`
+
+---
+
+## 💬 Join the Community
+
+Have questions, feedback, or ideas? Join our Discord server to chat with other developers, share your projects, or get help from the EasyCS community!
+
+👉 [Join our Discord](https://discord.gg/PTdEpJgQ)
 
 ## 📂 Getting Started
 
@@ -124,12 +176,12 @@ public class ActorBehaviorHealth : ActorBehavior
 }
 ```
 
-### 4. Add callbacks
+### 4. Override callbacks
 ```csharp
 using EasyCS;
 using UnityEngine;
 
-public class ActorBehaviorHealth : ActorBehavior, IAwake
+public class ActorBehaviorHealth : ActorBehavior
 {
     [Bind]
     private EntityDataHealthMax _dataHealthMax;
@@ -142,6 +194,15 @@ public class ActorBehaviorHealth : ActorBehavior, IAwake
     }
 }
 ```
+
+**Note:** Specifically in ActorBehavior you can override next callbacks:
+- HandleAwake
+- HandleDestroy
+- HandleEntityAttached
+- HandleEntityDetached
+- HandleEnable
+- HandleDisable
+**Note:** For other callbacks implement IStart, IUpdate, IFixedUpdate, ILateUpdate interfaces
 
 Generate providers:
 
@@ -158,6 +219,41 @@ Generate providers:
 ### 6. Done!
 ![Alt text](https://i.imgur.com/5bNQFep.png)
    
+
+---
+
+# Basics
+
+## Instantiate Object
+
+Simply use:
+
+`EasyCsContainer.Instantiate(prefab)` 
+
+OR
+
+`EasyCsContainer.InstantiateWithEntity(prefab)` to assign random `Entity` automatically to `Actor`
+
+---
+
+## Destroy Object
+
+Simply use:
+
+`GameObject.Destroy(gameObject)` every `Actor` will be destroyed with `Entity`
+
+OR
+
+`Actor.DestroyGameObjectWithoutEntities()` 
+ every `Actor` will be destroyed but `Entity` will remain alive
+
+---
+
+## ScriptableObjects Creator
+
+Powerful tool that allows you to search and create **ANY** ScriptableObjects using custom EditorWindow
+
+![Alt Text](https://i.imgur.com/7TgJTLk.gif)
 
 ---
 
@@ -384,6 +480,26 @@ public class EntityBehaviorHealth : EntityBehaviorBase, IAwake, IEventListener<E
 }
 ```
 
+## LifeTimeCycle Callbacks
+
+EasyCS provides you several of the well known Unity callbacks that perfectly integrated.
+
+Add them by implementing next callbacks:
+
+- `IHasContainer` - allows you to inject EasyCSContainer in your classes. Works even for default Monobehaviors
+- `IStart`
+- `IAwake`
+- `IUpdate`
+- `IFixedUpdate`
+- `ILateUpdate`
+- `IDispose` - Destroy alternative for `EntityComponent`
+
+Limitation: 
+- Most of the callbacks works only on `EasyCSBehavior`, `ActorComponent`, `EntityComponent`
+
+---
+
+
 ## Entity Signals
 
 Allows you to listen and sends events to `Entity`
@@ -472,30 +588,7 @@ EventSystem.RaiseGlobal(new EventTryAttack());
 
 ---
 
-## Instantiate Object
-
-Simply use:
-
-`EasyCsContainer.Instantiate(prefab)` 
-
-OR
-
-`EasyCsContainer.InstantiateWithEntity(prefab)` to assign random `Entity` automatically to `Actor`
-
----
-
-## Destroy Object
-
-Simply use:
-
-`GameObject.Destroy(gameObject)` every `Actor` will be destroyed with `Entity`
-
-OR
-
-`Actor.DestroyGameObjectWithoutEntities()` 
- every `Actor` will be destroyed but `Entity` will remain alive
-
----
+# Advanced
 
 ## EntityPredefinedScriptableObject
 
@@ -533,54 +626,6 @@ Provides a way to build and serialize `Entity` and hierarchy of several `Entity`
 
 Limitation:
 - You can't add `ActorComponent` during that mode, because you desiging Entity-layer data & logic in the `EntityFactory`
-
----
-
-## LifeTimeCycle Callbacks
-
-EasyCS provides you several of the well known Unity callbacks that perfectly integrated.
-
-Add them by implementing next callbacks:
-
-- `IHasContainer` - allows you to inject EasyCSContainer in your classes. Works even for default Monobehaviors
-- `IStart`
-- `IAwake`
-- `IUpdate`
-- `IFixedUpdate`
-- `ILateUpdate`
-- `IDispose` - Destroy alternative for `EntityComponent`
-
-Limitation: 
-- Most of the callbacks works only on `EasyCSBehavior`, `ActorComponent`, `EntityComponent`
-
----
-
-## ScriptableObjects Creator
-
-Powerful tool that allows you to search and create **ANY** ScriptableObjects using custom EditorWindow
-
-![Alt Text](https://i.imgur.com/7TgJTLk.gif)
-
-
-
-## 📦 Dependencies
-
-| Package            | Purpose                    | Optional |
-|--------------------|----------------------------|----------|
-| Unity 2021+        | Minimum version supported  | ❌        |
-| com.unity.2d.animation | Required for editor-hooks  | ❌        |
-| Zenject            | DI Framework support       | ✅        |
-| VContainer         | DI Framework support       | ✅        |
-| Odin Inspector     | Enhanced inspector UI      | ✅        |
-
----
-
----
-
-## 📚 Examples
-
-Check:
-`Assets/EasyCS/EasyCS-Samples/`
 
 ---
 
