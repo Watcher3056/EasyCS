@@ -103,6 +103,7 @@ The main idea is that you don't need to shift your mind-set from Unity Component
 | Zenject            | DI Framework support       | ✅        |
 | VContainer         | DI Framework support       | ✅        |
 | Odin Inspector     | Enhanced inspector UI      | ✅        |
+| Odin Validator     | Editor-Validation System     | ✅        |
 
 ---
 
@@ -119,14 +120,18 @@ https://github.com/Watcher3056/EasyCS-Submodule/releases
 ---
 
 ### (Optional) ⚙️ Setup with VContainer
-5. Attach `LifeTimeScopeWithInstallers` component on the same GameObject as before
-6. Drag-n-Drop `EasyCSInstaller` into `Installers` list on `LifeTimeScopeWithInstallers`
+
+5. Add `VCONTAINER_ENABLED` keyword in `Edit > Project Settings > Player > Scripting Define Symbols` then press "Apply"
+6. Attach `LifeTimeScopeWithInstallers` component on the same GameObject as before
+7. Drag-n-Drop `EasyCSInstaller` into `Installers` list on `LifeTimeScopeWithInstallers`
 
 ---
 
 ### (Optional) ⚙️ Setup with Zenject
-5. Make sure to attach `EasyCSInstaller` component on the GameObject with `SceneContext`
-6. Drag-n-Drop `EasyCSInstaller` into `Mono Installers` list on `SceneContext`
+
+5. Add `ZENJECT_ENABLED` keyword in `Edit > Project Settings > Player > Scripting Define Symbols` then press "Apply"
+6. Make sure to attach `EasyCSInstaller` component on the GameObject with `SceneContext`
+7. Drag-n-Drop `EasyCSInstaller` into `Mono Installers` list on `SceneContext`
 
 ---
 
