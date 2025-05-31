@@ -35,6 +35,7 @@ The main idea is that you don't need to shift your mind-set from Unity Component
   - [🔁 LifeTimeCycle Callbacks](#lifetimecycle-callbacks)
   - [📡 Entity Signals](#entity-signals)
 - [🧭 Advanced](#advanced)
+  - [🏗️ EntityTemplateAsset](#entitytemplateasset)
   - [📄 EntityPredefinedScriptableObject](#entitypredefinedscriptableobject)
   - [📌 EntityProvider](#entityprovider)
   - [🏗️ EntityFactory](#entityfactory)
@@ -595,6 +596,18 @@ EventSystem.RaiseGlobal(new EventTryAttack());
 
 # Advanced
 
+## EntityTemplateAsset
+
+- Provides a way to define templates(archetypes) for `Entity`, to optimize the workflow even more
+- Compatible with `Actor` and `EntityFactory` features
+
+Downsides:
+- Can be messy to work with on `Actor` so better use for creating `Entity` that don't need gameobject(plain objects), such as Inventory Items, etc.
+
+![Alt Text](https://i.imgur.com/Ifgrprc.png)
+
+---
+
 ## EntityPredefinedScriptableObject
 
 ![Alt Text](https://i.imgur.com/CEwGBtq.png)
@@ -602,6 +615,8 @@ EventSystem.RaiseGlobal(new EventTryAttack());
 - Allows you to serialize `Entity.ID` and restore it access it later
 - Provides storage for `Entity.ID` in asset, allowing cross-scene and cross-session references
 - Static and never changes between builds
+
+---
 
 ## EntityProvider
 
