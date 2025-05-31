@@ -1,9 +1,11 @@
 using EasyCS;
 using EasyCS.EntityFactorySystem;
+using TriInspector;
 
 namespace EasyCS.Samples
 {
-    public partial class EntityDataProviderAttack : EntityDataProvider<EntityDataFactoryAttack, EntityDataAttack> // Use partial
+    [DrawWithTriInspector]
+    public partial class EntityDataProviderAttack : EntityDataProvider<EntityDataFactoryAttack, EntityDataAttack>
     {
     }
 }

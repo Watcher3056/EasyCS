@@ -1,9 +1,11 @@
 using EasyCS;
-using EasyCS.EntityFactorySystem; // Assuming EntityBehaviorProvider is in this namespace
+using EasyCS.EntityFactorySystem;
+using TriInspector;
 
 namespace EasyCS.Samples
 {
-    public partial class EntityBehaviorProviderHealth : EntityBehaviorProvider<EntityBehaviorHealth> // Use partial
+    [DrawWithTriInspector]
+    public partial class EntityBehaviorProviderHealth : EntityBehaviorProvider<EntityBehaviorHealth>
     {
     }
 }

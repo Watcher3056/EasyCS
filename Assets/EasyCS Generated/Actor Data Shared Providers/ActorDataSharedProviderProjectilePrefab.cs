@@ -1,8 +1,10 @@
 using EasyCS;
+using TriInspector;
 
 namespace EasyCS.Samples
 {
-    public partial class ActorDataSharedProviderProjectilePrefab : ActorDataSharedProviderBase<ActorDataSharedProjectilePrefab, ActorDataSharedFactoryProjectilePrefab> // *** Corrected type name here ***
+    [DrawWithTriInspector]
+    public partial class ActorDataSharedProviderProjectilePrefab : ActorDataSharedProviderBase<ActorDataSharedProjectilePrefab, ActorDataSharedFactoryProjectilePrefab>
     {
     }
 }

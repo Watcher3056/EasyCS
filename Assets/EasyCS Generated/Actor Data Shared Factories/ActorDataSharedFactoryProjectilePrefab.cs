@@ -1,10 +1,12 @@
 using EasyCS;
 using UnityEngine; // Required for CreateAssetMenu
+using TriInspector;
 
 namespace EasyCS.Samples
 {
-    [CreateAssetMenu(fileName = "ActorDataSharedFactoryProjectilePrefab", menuName = "EasyCS/Actor Data Shared Factories/ActorDataSharedProjectilePrefab")] // Menu name based on base name
-    public partial class ActorDataSharedFactoryProjectilePrefab : ActorDataSharedFactory<ActorDataSharedProjectilePrefab> // Use partial
+    [DrawWithTriInspector]
+    [CreateAssetMenu(fileName = "ActorDataSharedFactoryProjectilePrefab", menuName = "EasyCS/Actor Data Shared Factories/ActorDataSharedProjectilePrefab")]
+    public partial class ActorDataSharedFactoryProjectilePrefab : ActorDataSharedFactory<ActorDataSharedProjectilePrefab>
     {
     }
 }
