@@ -1,6 +1,6 @@
 using EasyCS;
 using EasyCS.EntityFactorySystem;
-using UnityEngine; // Required for CreateAssetMenu
+using UnityEngine;
 using TriInspector;
 
 namespace EasyCS.Samples
