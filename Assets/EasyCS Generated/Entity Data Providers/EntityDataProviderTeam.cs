@@ -1,10 +1,10 @@
 using EasyCS;
 using EasyCS.EntityFactorySystem;
-using TriInspector;
+using UnityEngine;
 
 namespace EasyCS
 {
-    [DrawWithTriInspector]
+    [AddComponentMenu("EasyCS/Entity/Data/Data Team")]
     public partial class EntityDataProviderTeam : EntityDataProvider<EntityDataFactoryTeam, EntityDataTeam>
     {
     }

@@ -1,10 +1,10 @@
 using EasyCS;
 using EasyCS.EntityFactorySystem;
-using TriInspector;
+using UnityEngine;
 
 namespace EasyCS.Samples
 {
-    [DrawWithTriInspector]
+    [AddComponentMenu("EasyCS/Entity/Behavior/Behavior Health")]
     public partial class EntityBehaviorProviderHealth : EntityBehaviorProvider<EntityBehaviorHealth>
     {
     }

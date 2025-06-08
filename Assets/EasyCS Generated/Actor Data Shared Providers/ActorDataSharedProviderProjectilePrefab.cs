@@ -1,9 +1,9 @@
 using EasyCS;
-using TriInspector;
+using UnityEngine;
 
 namespace EasyCS.Samples
 {
-    [DrawWithTriInspector]
+    [AddComponentMenu("EasyCS/Actor/Data/Data Projectile Prefab")]
     public partial class ActorDataSharedProviderProjectilePrefab : ActorDataSharedProviderBase<ActorDataSharedProjectilePrefab, ActorDataSharedFactoryProjectilePrefab>
     {
     }

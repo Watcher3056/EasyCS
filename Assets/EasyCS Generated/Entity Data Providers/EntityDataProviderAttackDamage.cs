@@ -1,10 +1,10 @@
 using EasyCS;
 using EasyCS.EntityFactorySystem;
-using TriInspector;
+using UnityEngine;
 
 namespace EasyCS.Samples
 {
-    [DrawWithTriInspector]
+    [AddComponentMenu("EasyCS/Entity/Data/Data Attack Damage")]
     public partial class EntityDataProviderAttackDamage : EntityDataProvider<EntityDataFactoryAttackDamage, EntityDataAttackDamage>
     {
     }

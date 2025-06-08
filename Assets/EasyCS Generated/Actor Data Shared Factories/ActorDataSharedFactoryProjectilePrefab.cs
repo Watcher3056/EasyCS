@@ -1,5 +1,5 @@
 using EasyCS;
-using UnityEngine; // Required for CreateAssetMenu
+using UnityEngine;
 using TriInspector;
 
 namespace EasyCS.Samples
