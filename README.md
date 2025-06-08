@@ -18,6 +18,7 @@ Unlike traditional ECS solutions, EasyCS offers a **gradual adoption path**. You
 - [🚀 Why EasyCS?](#-why-easycs-solving-common-unity-development-challenges)
 - [🌟 Features at a Glance](#-features-at-a-glance)
 - [🔍 Comparison Table](#-framework-comparison-table)
+- [📦 Dependencies](#-dependencies)
 - [❔ FAQ](#frequently-asked-questions-faq)
   - [Is EasyCS just another ECS framework?](#is-easycs-just-another-ecs-framework)
   - [Is EasyCS as complex and slow to develop with as other ECS frameworks?](#is-easycs-as-complex-and-slow-to-develop-with-as-other-ecs-frameworks)
@@ -28,7 +29,6 @@ Unlike traditional ECS solutions, EasyCS offers a **gradual adoption path**. You
   - [What kind of games are *not* ideal for EasyCS?](#what-kind-of-games-are-not-ideal-for-easycs)
   - [Do I need to update all MonoBehaviours to EasyCS?](#do-i-need-to-update-all-monobehaviours-to-easycs)
   - [How to migrate my MonoBehaviours to EasyCS?](#how-to-migrate-my-monobehaviours-to-easycs)
-- [📦 Dependencies](#-dependencies)
 - [⚙️ Setup](#️-setup)
   - [🔧 Setup with VContainer (Optional)](#optional-️-setup-with-vcontainer)
   - [🧪 Setup with Zenject (Optional)](#optional-️-setup-with-zenject)
@@ -112,6 +112,21 @@ EasyCS is an **evolving framework** designed to be intuitive and easy to integra
 
 ---
 
+
+## 📦 Dependencies
+
+| Package            | Purpose                    | Optional |
+|--------------------|----------------------------|----------|
+| Unity 2021+        | Minimum version supported  | ❌        |
+| com.unity.2d.animation | Required for editor-hooks  | ❌        |
+| Tri Inspector Plus | Required for editor        | ❌ |
+| Zenject            | DI Framework support       | ✅        |
+| VContainer         | DI Framework support       | ✅        |
+| Odin Inspector     | Enhanced inspector UI      | ✅        |
+| Odin Validator     | Editor-Validation System     | ✅        |
+
+---
+
 ## **Frequently Asked Questions (FAQ)**
 
 ### **Is EasyCS just another ECS framework?**
@@ -167,39 +182,22 @@ Let's compare how a simple player movement system might be implemented in a trad
 In a typical Unity setup, movement logic and the Rigidbody component are often tightly coupled within a single MonoBehaviour.  
 
 ```csharp
-using UnityEngine;
-
-public class PlayerMovementTraditional : MonoBehaviour  
-{  
-    private float moveSpeed = 5f;  
-    private Rigidbody rb;
-
-    void Awake()  
-    {  
-        rb = GetComponent<Rigidbody>();  
-        if (rb == null)  
-        {  
-        Debug.LogError("PlayerMovementTraditional requires a Rigidbody component!");  
-            enabled = false;  
-        }  
-    }
-
+public class PlayerMovement : MonoBehaviour  
+{
+    [SerializeField]
+    private float _moveSpeed = 5f;
+    [SerializeField]
+    private Rigidbody _rb;
+    
     void FixedUpdate()  
     {  
         float horizontalInput = Input.GetAxis("Horizontal");  
         float verticalInput = Input.GetAxis("Vertical");
 
         Vector3 moveDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
+        Vector3 nextPosition = _rb.position + moveDirection * _moveSpeed * Time.fixedDeltaTime;
 
-        if (moveDirection.magnitude > 0.01f)  
-        {  
-            Vector3 nextPosition = rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime;
-
-            Quaternion rotation = Quaternion.LookRotation(moveDirection, Vector3.up);  
-            rb.MoveRotation(rotation);
-
-            rb.MovePosition(nextPosition);  
-        }  
+        _rb.MovePosition(nextPosition);
     }  
 }
 ```
@@ -216,36 +214,43 @@ EasyCS allows you to define movement data (EntityDataMove) separately from the R
 
 ```csharp
 
-[Serializable, RuntimeOnly]  
-public class EntityDataMove : EntityDataBase<Vector3>  {  }
+// Use EntityData for configuration and runtime data. Do not user for storing UnityEngine.Objects
+[Serializable] // (Optional) Apply [RuntimeOnly] attribute for data that does not require setup from inspector(runtime data)
+public class EntityDataMoveSpeed : EntityDataBase<float>  {  }
 
-public partial class ActorDataRigidbody : ActorData  
+// Use ActorData for linking GameObjects/Transform/Components within the GameObject hierarchy
+// For linking assets(prefabs, sprites, textures etc.) use ActorDataSharedBase
+// Ensure class is partial for compatibility with code generation
+public partial class ActorDataRigidbody : ActorData
 {  
     [field: SerializeField, Required]  
     public Rigidbody Rigidbody { get; private set; }  
 }
 
-public partial class ActorBehaviorMove : ActorBehavior, IFixedUpdate  
+// Ensure class is partial for compatibility with code generation
+// Replace the Monobehavior with ActorBehavior
+public partial class ActorBehaviorMove : ActorBehavior, IFixedUpdate // Implement required callbacks for your logic(IFixedUpdate)
 {  
     [Bind]  
-    private EntityDataMove _dataMove;  
+    private EntityDataMoveSpeed _dataMoveSpeed;  
     [Bind]  
     private ActorDataRigidbody _dataRigidbody;
 
     public void OnFixedUpdate(float deltaTime)  
-    {  
-        Vector3 nextPosition = Actor.transform.position + _dataMove.Value * deltaTime;
+    {
+        float horizontalInput = Input.GetAxis("Horizontal");  
+        float verticalInput = Input.GetAxis("Vertical");
 
-        if (_dataMove.Value.magnitude > 0f)  
-        {  
-            Quaternion rotation = Quaternion.LookRotation(_dataMove.Value.normalized, Vector3.up);  
-            _dataRigidbody.Rigidbody.MoveRotation(rotation);  
-            _dataRigidbody.Rigidbody.MovePosition(nextPosition);  
-        }  
+        Vector3 moveDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
+        Vector3 nextPosition = _dataRigidbody.Rigidbody.position + moveDirection * _dataMoveSpeed.Value * deltaTime;
+
+        _dataRigidbody.Rigidbody.MovePosition(nextPosition);  
     }  
 }
 
 ```
+
+**Note:** Don't forget to attach `Actor` component to your GameObject
 
 **Key Steps and Benefits of Migration:**
 
@@ -256,18 +261,6 @@ public partial class ActorBehaviorMove : ActorBehavior, IFixedUpdate
 5. **Editor-Friendly:** The [Bind] attribute not only automates data assignment but also ensures that all required dependencies are validated in the Inspector, providing instant feedback if anything is missing.
 
 This approach allows you to refactor your codebase piece by piece, gradually benefiting from EasyCS's architectural improvements without stopping ongoing development.
-
-## 📦 Dependencies
-
-| Package            | Purpose                    | Optional |
-|--------------------|----------------------------|----------|
-| Unity 2021+        | Minimum version supported  | ❌        |
-| com.unity.2d.animation | Required for editor-hooks  | ❌        |
-| Tri Inspector Plus | Required for editor        | ❌ |
-| Zenject            | DI Framework support       | ✅        |
-| VContainer         | DI Framework support       | ✅        |
-| Odin Inspector     | Enhanced inspector UI      | ✅        |
-| Odin Validator     | Editor-Validation System     | ✅        |
 
 ---
 
@@ -285,25 +278,25 @@ https://github.com/Watcher3056/EasyCS-Submodule/releases
 
 ### (Optional) ⚙️ Setup with VContainer
 
-5. Add `VCONTAINER_ENABLED` keyword in `Edit > Project Settings > Player > Scripting Define Symbols` then press "Apply"
-6. Attach `LifeTimeScopeWithInstallers` component on the same GameObject as before
-7. Drag-n-Drop `EasyCSInstaller` into `Installers` list on `LifeTimeScopeWithInstallers`
+4. Add `VCONTAINER_ENABLED` keyword in `Edit > Project Settings > Player > Scripting Define Symbols` then press "Apply"
+5. Attach `LifeTimeScopeWithInstallers` component on the same GameObject as before
+6. Drag-n-Drop `EasyCSInstaller` into `Installers` list on `LifeTimeScopeWithInstallers`
 
 ---
 
 ### (Optional) ⚙️ Setup with Zenject
 
-5. Add `ZENJECT_ENABLED` keyword in `Edit > Project Settings > Player > Scripting Define Symbols` then press "Apply"
-6. Make sure to attach `EasyCSInstaller` component on the GameObject with `SceneContext`
-7. Drag-n-Drop `EasyCSInstaller` into `Mono Installers` list on `SceneContext`
+4. Add `ZENJECT_ENABLED` keyword in `Edit > Project Settings > Player > Scripting Define Symbols` then press "Apply"
+5. Make sure to attach `EasyCSInstaller` component on the GameObject with `SceneContext`
+6. Drag-n-Drop `EasyCSInstaller` into `Mono Installers` list on `SceneContext`
 
 ---
 
 
 ## 📚 Examples
 
-Check:
-`Assets/EasyCS/EasyCS-Samples/`
+1. Download this repository
+2. Check: `Assets/EasyCS-Samples/`
 
 ---
 
@@ -371,6 +364,7 @@ public class ActorBehaviorHealth : ActorBehavior
 - HandleEntityDetached
 - HandleEnable
 - HandleDisable
+
 **Note:** For other callbacks implement IStart, IUpdate, IFixedUpdate, ILateUpdate interfaces
 
 Generate providers:
