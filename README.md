@@ -1,19 +1,33 @@
-# 🧩 EasyCS – Entity-Data Framework for Unity
+# 🧩 EasyCS: Data-Driven Entity & Actor-Component Framework for Unity
 
 ![Alt Text](https://i.imgur.com/ZKoOJxK.png)
 
-**EasyCS** is a modern, scriptable, and **SUPER** editor-friendly Entity-Component-System (ECS) framework designed specifically for Unity, where "S"(stand for System) in ECS is completely optional.
+EasyCS is an **easy-to-use and flexible** framework for Unity designed to empower developers with a flexible and performant approach to structuring game logic. It bridges the gap between traditional Object-Orientated Programming (OOP) in Unity and the benefits of data-oriented design, **without forcing a complete paradigm shift or complex migrations.**  
+At its core, EasyCS allows you to:
 
-It bridges the gap between traditional Unity OOP workflows and ECS — without sacrificing usability or flexibility.
+* **Decouple data from logic:** Define your game data (e.g., character stats, inventory items) as plain C\# objects (**Entities**) independent of Unity's MonoBehaviour lifecycle.  
+* **Organize logic cleanly:** Implement game behaviors (**Systems**) that operate on this decoupled data, promoting modularity and testability. **Crucially, Systems are an optional feature in EasyCS; you decide if and when to use them.**  
+* **Integrate seamlessly with Unity:** Connect your data-driven logic back to your GameObjects and MonoBehaviours, providing granular control without sacrificing Unity's intuitive editor workflow.  
+* **Maximize ScriptableObject utility:** EasyCS provides robust tools to work with ScriptableObjects, significantly reducing boilerplate and enhancing their utility for data management.
 
-The main idea is that you don't need to shift your mind-set from Unity Component-OOP appoach to ECS, while still benefiting from improved Entity-Data workflow!
+Unlike traditional ECS solutions, EasyCS offers a **gradual adoption path**. You can leverage its powerful features where they make sense for your project, **without the high entry barrier or full migration costs** often associated with other frameworks. This makes EasyCS an ideal choice for both new projects and for **integrating into existing Unity codebases, even mid-development.**
 
 ## 📚 Table of Contents
 
-- [🧩 EasyCS – Entity-Data Framework for Unity](#-easycs--entity-data-framework-for-unity)
-- [🚀 Why EasyCS?](#-why-easycs)
+- [🧩 EasyCS – Data-Driven Entity & Actor-Component Framework for Unity](#-easycs-data-driven-entity--actor-component-framework-for-unity)
+- [🚀 Why EasyCS?](#-why-easycs-solving-common-unity-development-challenges)
 - [🌟 Features at a Glance](#-features-at-a-glance)
 - [🔍 Comparison Table](#-framework-comparison-table)
+- [❔ FAQ](#frequently-asked-questions-faq)
+  - [Is EasyCS just another ECS framework?](#is-easycs-just-another-ecs-framework)
+  - [Is EasyCS as complex and slow to develop with as other ECS frameworks?](#is-easycs-as-complex-and-slow-to-develop-with-as-other-ecs-frameworks)
+  - [EasyCS vs. other ECS (like Unity DOTS)?](#easycs-vs-other-ecs-like-unity-dots)
+  - [I'm using DI (Zenject, VContainer) do I need EasyCS?](#im-using-di-zenject-vcontainer-do-i-need-easycs)
+  - [Is EasyCS suitable for Junior, Mid, or Senior developers?](#is-easycs-suitable-for-junior-mid-or-senior-developers)
+  - [What kind of games can be made with EasyCS?](#what-kind-of-games-can-be-made-with-easycs)
+  - [What kind of games are *not* ideal for EasyCS?](#what-kind-of-games-are-not-ideal-for-easycs)
+  - [Do I need to update all MonoBehaviours to EasyCS?](#do-i-need-to-update-all-monobehaviours-to-easycs)
+  - [How to migrate my MonoBehaviours to EasyCS?](#how-to-migrate-my-monobehaviours-to-easycs)
 - [📦 Dependencies](#-dependencies)
 - [⚙️ Setup](#️-setup)
   - [🔧 Setup with VContainer (Optional)](#optional-️-setup-with-vcontainer)
@@ -45,7 +59,23 @@ The main idea is that you don't need to shift your mind-set from Unity Component
 
 ---
 
-## 🚀 Why EasyCS?
+## 🚀 Why EasyCS? Solving Common Unity Development Challenges
+
+Many Unity developers, especially those working on **simple to mid-core projects**, face similar hurdles when building games or considering alternative architectures. EasyCS was created to address these common challenges directly and offer a more accessible pathway to improved architecture:
+
+* **Painless Integration & Gradual Adoption:** Integrating a full ECS framework mid-project can be a daunting, risky, and sometimes impractical task, especially for teams unfamiliar with ECS. EasyCS is built for **simple integration into any project, at any stage**. You don't need to refactor everything; apply its principles incrementally where they can provide the most benefit. This flexibility makes it ideal for **fast-paced prototyping** and for teams looking to improve their codebase without a massive overhaul.  
+* **Lower Entry Barrier & Familiar Workflow:** Traditional ECS often presents a steep learning curve and demands a significant shift in thinking. EasyCS lets you **continue working with MonoBehaviours as you're used to**, while providing tools to introduce data-oriented principles when beneficial. It's designed as a **framework for beginners to ECS**, offering a gentler introduction without overwhelming complexity.  
+* **Automated Data Management with ScriptableObjects:** Unity's ScriptableObjects are powerful for data, but often require manual setup and boilerplate. EasyCS provides **fully automated creation and management for data configurations** using ScriptableObjects, drastically reducing routine work and improving your workflow for game data.  
+* **Clear Execution Flow:** Unlike Unity's default MonoBehaviour execution order, which can sometimes be unpredictable across multiple scripts, EasyCS provides a **clear, defined order for initialization and updates** (e.g., OnAwake, OnUpdate). This predictability makes debugging and understanding complex systems much easier.  
+* **Better Unity Experience:** Unity's default approach can get messy as projects grows. EasyCS aims to **improve how you work in the Unity editor** by giving you a more organized way to manage game data and logic. It brings architectural benefits without making you abandon familiar Unity tools.  
+* **Practicality First:** Most game projects don't fully switch to ECS, despite its architectural strengths. EasyCS offers a **balanced, practical solution**. It's not meant to replace powerful, production-level ECS frameworks, but to provide a clear, understandable option for common development tasks where ECS principles help, but a full migration isn't needed or wanted.
+
+EasyCS is an **evolving framework** designed to be intuitive and easy to integrate. It helps developers solve real problems like separating data and logic, or using ScriptableObjects efficiently, all without the high barrier to entry or big refactoring demands of other solutions. It's about empowering Unity developers to build stronger, more maintainable games, step by step.
+
+
+---
+
+## 🌟 Features at a Glance
 - 🔀 **Split Behavior and Data layers** – Provides a clean separation between logic (behaviors) and state (data), making systems more modular, testable, and reusable.
 - 🏗️ **Entity and Unity Layers** – Organize your logic and data either on the Unity side or within Entity, depending on your needs.
 - ✅ **Familiar Workflow** – Work with Unity GameObjects, Prefabs and ScriptableObjects even better than before!
@@ -59,18 +89,6 @@ The main idea is that you don't need to shift your mind-set from Unity Component
 
 ---
 
-## 📦 Features at a Glance
-
-| Feature                          | Description                                      |
-|----------------------------------|--------------------------------------------------|
-| 🛠 Entity Authoring              | Build entity hierarchies using Prefabs or SOs    |
-| 🧩 Component Injection           | Auto-attach required dependencies                |
-| 🔍 Editor Dependency Checks      | Let's you know if you forget to add components
-| 💾 ScriptableObject Factories   | Edit reusable data blocks in the inspector       |
-| 🧠 Behavior Providers           | Modular runtime behaviors with injection         |
-| 📂 Auto-generated Source        | Providers and factories created via reflection   |
-| ⚙️ Framework Integrations       | Built-in support for Zenject, VContainer         |
-
 ## 🔍 Framework Comparison Table
 
 | Feature / Capability                        | Classic Unity            | Zenject / VContainer DI                     | Classical ECS               | 🧩 **EasyCS**                         |
@@ -78,21 +96,166 @@ The main idea is that you don't need to shift your mind-set from Unity Component
 | ✅ **ScriptableObject Integration**         | ❌ Manual, boilerplate     | 🟡 Manual or per-pattern                     | ❌ Not used                  | ✅ Native + Automated                |
 | 🧱 **Component Modularity**                 | 🟡 MonoBehavior composition | 🟡 Service-level modularity only             | ✅ System-defined archetypes | ✅ Behavior + Data Layers           |
 | 🔄 **Instantiate / Destroy Entities**       | 🟡 GameObject.Destroy      | 🟡 Unity-style destruction                   | ✅ Built-in, loop-friendly   | ✅ Entity-aware creation/destruction|
-| 💾 **Save System Integration**              | ❌ Requires boilerplate     | 🟡 DI-friendly but needs logic               | 🟡 Loop-ready, verbose       | ✅ Loopable + serializable data     |
+| 💾 **Save System Compatibility**              | ❌ Requires boilerplate     | 🟡 DI-friendly but needs logic               | ✅ Loopable + serializable data   | ✅ Loopable + serializable data     |
 | 🧩 **Entity Construction**                  | ❌ Manual Mono setup        | 🟡 Scene installers + custom prefabs         | ✅ Data-defined archetypes   | ✅ Prefab + Scriptable Entity setup |
 | 🧠 **MonoBehaviour Reuse**                  | ✅ Built-in                 | 🟡 Wrapped in services                       | 🟡 Requires refactoring      | ✅ Retains Unity-style reuse        |
-| 🧩 **Local Data Injection**                 | ❌ Manual references        | 🟡 Needs custom installers                   | ❌ Not designed for it       | ✅ Declarative and automatic       |
+| 🧩 **Monobehavior Data Injection**          | ❌ Manual references        | 🟡 Needs custom installers                   | ❌ Not designed for it       | ✅ Declarative and automatic       |
 | 🏁 **Entry Point (Lifecycle Bootstrap)**    | ❌ None                     | ✅ Custom installers                         | ✅ System-based              | ✅ EasyCSInstaller                  |
-| 🔁 **Loop-Ready Data Access**               | ❌ Not supported natively   | 🟡 Partial (registered only)                | ✅ Native                    | ✅ Native per Entity access         |
+| 🔁 **Loop-Ready Monobehavior Data Access**  | ❌ None                     | 🟡 Partial (registered only)                | 🟡 Only for Entity           | ✅ Native per Entity/Actor access         |
 | ⚡ **Conversion from Existing Code**        | —                          | 🟡 Needs wrapping in services                | ❌ Full refactor required    | ✅ Easy MonoBehaviour conversion    |
 | 💡 **Learning Curve**                       | ✅ Familiar                 | 🟡 Moderate (DI concepts)                    | ❌ High (ECS paradigm shift) | ✅ Low, Unity-like feel             |
-| 🔌 **Compatible with DI Frameworks**        | 🟡 With adapters            | ✅ Native                                    | ❌ Not applicable            | ✅ Optional & Compatible            |
+| 🔌 **Compatible with DI Frameworks**        | 🟡 With adapters            | ✅ Native                                    | 🟡 Partial & Manual           | ✅ Optional & Out-Of-Box            |
 | ⚡ **Logic Reactivity**                    | ✅ Native                    | ✅ Native                                   | 🟡 Frame-delayed             | ✅ Native                           |
-| 🧪 **Prototype Friendliness**              | ✅ Easy but needs refactor  | 🟡 Needs additional setup                    | ❌ Not friendly              | ✅ Near Native                    |
-| 🧰 **Editor-Friendliness**                 | 🟡 Familiar but limited     | 🟡 Same as Unity                             | ❌ Poor integration          | ✅ Enhanced with tools & Validation |
+| 🧪 **Prototype Friendliness**              | ✅ Easy with technical dept  | 🟡 Needs additional setup                    | ❌ Not friendly              | ✅ Near Native                    |
+| 🧰 **Editor-Friendliness**                 | 🟡 Familiar but limited     | 🟡 Same as Unity                             | ❌ Poor integration          | ✅ Enchanced & Prioritized       |
 | 📈 **Scalability**                        | ❌ Requires custom solutions | 🟡 Improves scaling, not ideal for per-object data | ✅ Built for large-scale systems | ✅ Potentially scalable |
 
 ---
+
+## **Frequently Asked Questions (FAQ)**
+
+### **Is EasyCS just another ECS framework?**
+
+No, EasyCS is not an ECS (Entity-Component-System) framework in the classic, strict sense. It draws inspiration from data-oriented design and ECS principles by emphasizing the decoupling of data from logic, but it doesn't force a full paradigm shift like DOTS or other pure ECS solutions. EasyCS is designed to be more flexible and integrates seamlessly with Unity's traditional MonoBehaviour workflow, allowing you to adopt data-oriented practices incrementally without a complete architectural overhaul. It focuses on usability and development speed for a broader range of Unity projects.
+
+### **Is EasyCS as complex and slow to develop with as other ECS frameworks?**
+
+Absolutely not. One of the core motivations behind EasyCS is to reduce the complexity and development overhead often associated with traditional ECS. Pure ECS solutions can have a steep learning curve and may slow down initial prototyping due to their strict architectural requirements. EasyCS is built for **fast-paced prototyping** and **simple integration**, allowing you to improve your project's architecture incrementally. You get the benefits of data-oriented design without the "all-or-nothing" commitment and steep learning curve that can hinder development speed.
+
+### **EasyCS vs. other ECS (like Unity DOTS)?**
+
+Use EasyCS for **simple to mid-core projects** where development speed, clear architecture, and smooth Unity integration are key. Choose DOTS for **massive performance** needs (hundreds of thousands of simulated entities). If you're already proficient with another ECS and have an established pipeline, stick with it.
+
+### **I'm using DI (Zenject, VContainer) do I need EasyCS?**
+
+Yes, EasyCS is **compatible with DI frameworks** like Zenject and VContainer, but it's not required. While DI manages global services and dependencies across your application, EasyCS focuses on structuring individual game objects (Actors) and their local data. EasyCS components are well-structured and injectable, complementing your DI setup by providing cleaner, modular building blocks for game entities, avoiding custom boilerplate for local object data management.
+
+### **Is EasyCS suitable for Junior, Mid, or Senior developers?**
+
+EasyCS offers benefits across all experience levels. For **Junior and Mid-level developers**, it provides a gentle introduction to data-oriented design and helps build better coding habits. For **Senior developers**, it serves as a practical tool to incrementally improve existing projects, avoid common "reinventing the wheel" scenarios, and streamline development workflows.
+
+### **What kind of games can be made with EasyCS?**
+
+EasyCS is ideal for a **wide range of projects** where robust architecture, clear data flow, and efficient editor workflows are critical. It excels at making individual game systems cleaner and more manageable.
+
+* **Ideal for:**  
+  * **Small to Mid-core Projects:** This includes single-player experiences and games with moderate complexity.  
+  * **Prototypes & Small Projects:** Quickly build and iterate with a clean architectural foundation.  
+  * **Games requiring full game state serialization and an out-of-the-box save system compatibility**, thanks to its decoupled data approach.  
+  * **Cross-Genre Applicability:** Suitable for diverse genres like puzzle, casual, strategy, RPGs, and action games.  
+  * **Multi-Platform Development:** Supports development on Mobile, PC, and other platforms where Unity is used.
+
+### **What kind of games are *not* ideal for EasyCS?**
+
+While highly flexible, EasyCS is not optimized for **extreme, large-scale data-oriented performance**.
+
+* **Not ideal for (or requires manual implementation):**  
+  * Games requiring simulation of **millions of entities simultaneously** (e.g., highly complex simulations, massive real-time strategy games with vast unit counts, very dense physics simulations). For these, pure, low-level ECS like Unity DOTS is more appropriate.  
+  * Games with **complex built-in multiplayer synchronization** (Entity-data is not automatically synced across clients; this mechanism needs to be implemented manually, though it's planned for future improvement).
+
+### **Do I need to update all MonoBehaviours to EasyCS?**
+
+No, **a complete migration of all your existing MonoBehaviours is absolutely not required**. EasyCS is designed for seamless integration with your current codebase. You can introduce EasyCS incrementally, refactoring specific MonoBehaviours or building new features using its principles, while the rest of your project continues to function as before. This allows you to adopt the framework at your own pace and where it provides the most value.
+
+### **How to migrate my MonoBehaviours to EasyCS?**
+
+Migrating existing MonoBehaviours to EasyCS is designed to be a **gradual and controlled process**, not a forced rewrite. It allows you to transform your existing tightly coupled MonoBehaviours into modular, data-driven components.  
+Let's compare how a simple player movement system might be implemented in a traditional Unity approach versus using EasyCS. This highlights how EasyCS separates data from logic for cleaner, more modular code, illustrating the migration process.
+
+#### **Before Migration: Standard MonoBehaviour**
+
+In a typical Unity setup, movement logic and the Rigidbody component are often tightly coupled within a single MonoBehaviour.  
+
+```csharp
+using UnityEngine;
+
+public class PlayerMovementTraditional : MonoBehaviour  
+{  
+    private float moveSpeed = 5f;  
+    private Rigidbody rb;
+
+    void Awake()  
+    {  
+        rb = GetComponent<Rigidbody>();  
+        if (rb == null)  
+        {  
+        Debug.LogError("PlayerMovementTraditional requires a Rigidbody component!");  
+            enabled = false;  
+        }  
+    }
+
+    void FixedUpdate()  
+    {  
+        float horizontalInput = Input.GetAxis("Horizontal");  
+        float verticalInput = Input.GetAxis("Vertical");
+
+        Vector3 moveDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
+
+        if (moveDirection.magnitude > 0.01f)  
+        {  
+            Vector3 nextPosition = rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime;
+
+            Quaternion rotation = Quaternion.LookRotation(moveDirection, Vector3.up);  
+            rb.MoveRotation(rotation);
+
+            rb.MovePosition(nextPosition);  
+        }  
+    }  
+}
+```
+
+**Key Points:**
+
+* **Tight Coupling:** The moveSpeed data and the movement logic are both inside the PlayerMovementTraditional MonoBehaviour.  
+* **Direct Dependency:** The script directly depends on and controls the Rigidbody component.  
+* **Less Reusable:** This specific movement logic is designed for this MonoBehaviour.
+
+#### **After Migration: Decoupled Data and Behavior with EasyCS**
+
+EasyCS allows you to define movement data (EntityDataMove) separately from the Rigidbody data (ActorDataRigidbody) and then bind them to an ActorBehaviorMove that performs the logic.  
+
+```csharp
+
+[Serializable, RuntimeOnly]  
+public class EntityDataMove : EntityDataBase<Vector3>  {  }
+
+public partial class ActorDataRigidbody : ActorData  
+{  
+    [field: SerializeField, Required]  
+    public Rigidbody Rigidbody { get; private set; }  
+}
+
+public partial class ActorBehaviorMove : ActorBehavior, IFixedUpdate  
+{  
+    [Bind]  
+    private EntityDataMove _dataMove;  
+    [Bind]  
+    private ActorDataRigidbody _dataRigidbody;
+
+    public void OnFixedUpdate(float deltaTime)  
+    {  
+        Vector3 nextPosition = Actor.transform.position + _dataMove.Value * deltaTime;
+
+        if (_dataMove.Value.magnitude > 0f)  
+        {  
+            Quaternion rotation = Quaternion.LookRotation(_dataMove.Value.normalized, Vector3.up);  
+            _dataRigidbody.Rigidbody.MoveRotation(rotation);  
+            _dataRigidbody.Rigidbody.MovePosition(nextPosition);  
+        }  
+    }  
+}
+
+```
+
+**Key Steps and Benefits of Migration:**
+
+1. **Identify and Separate Data:** The moveSpeed and Rigidbody references are extracted into dedicated data components: EntityDataMove (for the conceptual movement input/direction) and ActorDataRigidbody (for the Rigidbody component itself). These are now separate, reusable pieces of data.  
+2. **Refactor Logic to ActorBehavior:** The movement logic from the original FixedUpdate is moved into ActorBehaviorMove. This class inherits from ActorBehavior, which is Unity-compatible but integrates with EasyCS's system.  
+3. **Automatic Data Binding:** The [Bind] attribute automatically injects the EntityDataMove and ActorDataRigidbody instances into ActorBehaviorMove. This eliminates manual GetComponent calls and direct references, making dependencies clear and managed by the framework.  
+4. **Modular and Testable:** The data components are now independent, making them easier to test in isolation. The ActorBehaviorMove focuses purely on movement logic, improving its clarity and testability.  
+5. **Editor-Friendly:** The [Bind] attribute not only automates data assignment but also ensures that all required dependencies are validated in the Inspector, providing instant feedback if anything is missing.
+
+This approach allows you to refactor your codebase piece by piece, gradually benefiting from EasyCS's architectural improvements without stopping ongoing development.
 
 ## 📦 Dependencies
 
