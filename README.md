@@ -28,6 +28,7 @@ Unlike traditional ECS solutions, EasyCS offers a **gradual adoption path**. You
   - [What kind of games can be made with EasyCS?](#what-kind-of-games-can-be-made-with-easycs)
   - [What kind of games are *not* ideal for EasyCS?](#what-kind-of-games-are-not-ideal-for-easycs)
   - [Do I need to update all MonoBehaviours to EasyCS?](#do-i-need-to-update-all-monobehaviours-to-easycs)
+  - [Can Entity & Data exist without GameObjects?](#can-entities-and-data-exist-independently-of-unity-gameobjects)
   - [How to migrate my MonoBehaviours to EasyCS?](#how-to-migrate-my-monobehaviours-to-easycs)
 - [⚙️ Setup](#️-setup)
   - [🔧 Setup with VContainer (Optional)](#optional-️-setup-with-vcontainer)
@@ -171,6 +172,15 @@ While highly flexible, EasyCS is not optimized for **extreme, large-scale data-o
 ### **Do I need to update all MonoBehaviours to EasyCS?**
 
 No, **a complete migration of all your existing MonoBehaviours is absolutely not required**. EasyCS is designed for seamless integration with your current codebase. You can introduce EasyCS incrementally, refactoring specific MonoBehaviours or building new features using its principles, while the rest of your project continues to function as before. This allows you to adopt the framework at your own pace and where it provides the most value.
+
+### **Can Entities and Data exist independently of Unity GameObjects?**
+
+Yes, they absolutely can\! EasyCS is designed with a clear separation of concerns:
+
+* **Entity-Layer (Pure Game Logic Data):** By default, **pure game logic data** (like player stats, inventory items, or quest states) resides in classes inheriting from **EntityDataBase or EntityDataCustomBase**. These are **plain C\# classes** and do **not** inherit from MonoBehaviour. This means you can create, manage, and process them entirely in code, independent of any GameObject in your Unity scene. This is ideal for core game data that doesn't inherently need a visual representation or direct Unity component interaction.  
+* **Actor-Layer (Unity Data & GameObject Links):** Classes inheriting from **ActorData and ActorBehavior** **do** inherit from MonoBehaviour. They are designed to hold **Unity-specific data and GameObject links** (like a Rigidbody reference, transform data, or mesh renderer references) and to provide the bridge between your decoupled Entity data and Unity's scene hierarchy.
+
+This clear distinction gives you the flexibility to manage your game's core data logic separately from its Unity representation, leading to cleaner architecture and more robust systems.
 
 ### **How to migrate my MonoBehaviours to EasyCS?**
 
