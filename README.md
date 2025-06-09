@@ -316,7 +316,7 @@ https://github.com/Watcher3056/EasyCS-Submodule/releases
 
 Have questions, feedback, or ideas? Join our Discord server to chat with other developers, share your projects, or get help from the EasyCS community!
 
-👉 [Join our Discord](https://discord.gg/PTdEpJgQ)
+👉 [Join our Discord](https://discord.gg/d4CccJAMQc)
 
 ## 📂 Getting Started
 
