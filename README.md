@@ -282,23 +282,25 @@ https://github.com/Watcher3056/EasyCS-Submodule/releases
 
 2. Import `.unitypackage` to your project
 
-3. Attach `EasyCSInstaller` component to GameObject on scene
+3. Import Unity package `com.unity.2d.animation` or `com.unity.2d` from Package Manager
+
+4. Attach `EasyCSInstaller` component to GameObject on scene
 
 ---
 
 ### (Optional) ⚙️ Setup with VContainer
 
-4. Add `VCONTAINER_ENABLED` keyword in `Edit > Project Settings > Player > Scripting Define Symbols` then press "Apply"
-5. Attach `LifeTimeScopeWithInstallers` component on the same GameObject as before
-6. Drag-n-Drop `EasyCSInstaller` into `Installers` list on `LifeTimeScopeWithInstallers`
+5. Add `VCONTAINER_ENABLED` keyword in `Edit > Project Settings > Player > Scripting Define Symbols` then press "Apply"
+6. Attach `LifeTimeScopeWithInstallers` component on the same GameObject as before
+7. Drag-n-Drop `EasyCSInstaller` into `Installers` list on `LifeTimeScopeWithInstallers`
 
 ---
 
 ### (Optional) ⚙️ Setup with Zenject
 
-4. Add `ZENJECT_ENABLED` keyword in `Edit > Project Settings > Player > Scripting Define Symbols` then press "Apply"
-5. Make sure to attach `EasyCSInstaller` component on the GameObject with `SceneContext`
-6. Drag-n-Drop `EasyCSInstaller` into `Mono Installers` list on `SceneContext`
+5. Add `ZENJECT_ENABLED` keyword in `Edit > Project Settings > Player > Scripting Define Symbols` then press "Apply"
+6. Make sure to attach `EasyCSInstaller` component on the GameObject with `SceneContext`
+7. Drag-n-Drop `EasyCSInstaller` into `Mono Installers` list on `SceneContext`
 
 ---
 
