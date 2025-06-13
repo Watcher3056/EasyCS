@@ -2,6 +2,8 @@
 
 ![Alt Text](https://i.imgur.com/ZKoOJxK.png)
 
+👉 [Join our Discord](https://discord.gg/d4CccJAMQc)
+
 EasyCS is an **easy-to-use and flexible** framework for Unity designed to empower developers with a flexible and performant approach to structuring game logic. It bridges the gap between traditional Object-Orientated Programming (OOP) in Unity and the benefits of data-oriented design, **without forcing a complete paradigm shift or complex migrations.**  
 At its core, EasyCS allows you to:
 
