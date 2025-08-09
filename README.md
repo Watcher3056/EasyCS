@@ -334,7 +334,7 @@ public class EntityDataHealthMax : EntityDataBase<float> {}
 ```csharp
 using EasyCS;
 
-public class ActorBehaviorHealth : ActorBehavior
+public partial class ActorBehaviorHealth : ActorBehavior
 {
 
 }
@@ -345,7 +345,7 @@ public class ActorBehaviorHealth : ActorBehavior
 ```csharp
 using EasyCS;
 
-public class ActorBehaviorHealth : ActorBehavior
+public partial class ActorBehaviorHealth : ActorBehavior
 {
     [Bind]
     private EntityDataHealthMax _dataHealthMax;
@@ -357,7 +357,7 @@ public class ActorBehaviorHealth : ActorBehavior
 using EasyCS;
 using UnityEngine;
 
-public class ActorBehaviorHealth : ActorBehavior
+public partial class ActorBehaviorHealth : ActorBehavior
 {
     [Bind]
     private EntityDataHealthMax _dataHealthMax;
@@ -385,6 +385,9 @@ Generate providers:
 
 ![Alt text](https://i.imgur.com/crNzuwl.png)
 
+**Note:** By default Code Generation executes automatically.
+**Note:** Code generation supports refactoring without lossing references to scripts!
+
 ### 5. Attach components to GameObject
 - `Actor`
 - `ActorBehaviorHealth`
@@ -409,7 +412,7 @@ Simply use:
 
 OR
 
-`EasyCsContainer.InstantiateWithEntity(prefab)` to assign random `Entity` automatically to `Actor`
+`EasyCsContainer.InstantiateWithEntity(prefab)` to assign new random `Entity` automatically to `Actor`
 
 ---
 
@@ -422,7 +425,7 @@ Simply use:
 OR
 
 `Actor.DestroyGameObjectWithoutEntities()` 
- every `Actor` will be destroyed but `Entity` will remain alive
+Will destroy `Actor` and every it's child `Actor` but `Entity` will remain alive
 
 ---
 
@@ -773,7 +776,7 @@ EventSystem.RaiseGlobal(new EventTryAttack());
 - Compatible with `Actor` and `EntityFactory` features
 
 Downsides:
-- Can be messy to work with on `Actor` so better use for creating `Entity` that don't need gameobject(plain objects), such as Inventory Items, etc.
+- Can be messy to work with on `Actor` so better use in context of `EntityFactory`(ScriptableObject) for creating `Entity` that don't need gameobject(plain objects), such as Inventory Items, etc.
 
 ![Alt Text](https://i.imgur.com/Ifgrprc.png)
 
